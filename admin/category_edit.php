@@ -20,12 +20,14 @@ if(is_post_request()) {
 
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<h1>EDIT CATEGORY - <?php echo h($category_name); ?></h1>
-
-<form action="<?php echo url_for('/admin/category_edit.php?id=' . h(u($id))) ?>" method="post">
-    <input type="text" name="new_value" value="<?php echo h($category_name); ?>" required></br>
-    <input type="password" name="password" placeholder="Admin Password" required /></br>
-    <input type="submit" value="Submit">
-</form>
+<div id="content">
+    <h1>EDIT CATEGORY - <?php echo h($category_name); ?></h1>
+    
+    <form action="<?php echo url_for('/admin/category_edit.php?id=' . h(u($id))) ?>" method="post">
+        <input type="text" name="new_value" value="<?php echo h($category_name); ?>" required></br>
+        <input type="password" name="password" placeholder="Admin Password" required /></br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

@@ -21,12 +21,14 @@ if(is_post_request()) {
 
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<h1>New Ingredient</h1>
-
-<form action="<?php echo url_for('/admin/ingredient_new.php'); ?>" method="post">
-    <input type="text" name="new_ingredient_name" placeholder="New Ingredient Name" required></br>
-    <input type="password" name="password" placeholder="Admin Password" required /></br>
-    <input type="submit" value="Submit">
-</form>
+<div id="content">
+    <h1>New Ingredient</h1>
+    
+    <form action="<?php echo url_for('/admin/ingredient_new.php'); ?>" method="post">
+        <input type="text" name="new_ingredient_name" placeholder="New Ingredient Name" required></br>
+        <input type="password" name="password" placeholder="Admin Password" required /></br>
+        <input type="submit" value="Submit">
+    </form>
+<div id="content">
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

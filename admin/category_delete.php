@@ -21,13 +21,17 @@ if(is_post_request()) {
 
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<h1>DELETE CATEGORY - <?php echo h($category_name); ?></h1>
+<div id="content">
+    <h1>DELETE CATEGORY - <?php echo h($category_name); ?></h1>
+    
+    <h2>Are you sure you want to delete this category?</h2>
+    
+    <form action="<?php echo url_for('/admin/category_delete.php?id=' . h(u($id))) ?>" method="post">
+        <input type="password" name="password" placeholder="Admin Password" required /></br>
+        <input type="submit" value="Delete Category">
+    </form>
+</div>
 
-<h2>Are you sure you want to delete this category?</h2>
 
-<form action="<?php echo url_for('/admin/category_delete.php?id=' . h(u($id))) ?>" method="post">
-    <input type="password" name="password" placeholder="Admin Password" required /></br>
-    <input type="submit" value="Delete Category">
-</form>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

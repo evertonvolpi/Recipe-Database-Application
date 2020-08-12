@@ -30,57 +30,59 @@ if(is_post_request()) {
 
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<h1>New Recipe</h1>
-
-<form action="<?php echo url_for('/admin/recipe_new.php'); ?>" id="new_recipe_form" method="post">
+<div id="content">
+    <h1>New Recipe</h1>
     
-    <!-- N A M E -->
-    
-    <label for="recipe_name">Recipe Name</label></br>
-    <input type="text" name="recipe_name" id="recipe_name" placeholder="Recipe Name" required></br>
-    
-    <!-- C A T E G O R I E S -->
-    
-    <label for="categories_list">Select the categories</label></br>
-    <?php $categories = find_all_categories(); ?>
-    <select name="categories_list" id="categories_list">
-        <option value="" selected disabled="disabled">Select</option>
-        <?php while($category = mysqli_fetch_assoc($categories)) { ?>
-        <option class="cat_list_item" value="<?php echo $category['id'] ?>"><?php echo find_name_of_category($category['id']) ?></option>
-        <?php } ?>
-    </select></br>
-    <?php mysqli_free_result($categories); ?>
-    
-    <table id="categories_table"></table>
-    
-    <input type="text" name="cat_list" id="cat_list" class="hidden" value=""/>
-
-    <!-- I N G R E D I E N T S -->
-
-    <label for="ingredients_list">Select new ingredient</label></br>
-    <?php $ingredients = find_all_ingredients(); ?>
-    <select name="ingredients_list" id="ingredients_list">
-        <option value="" selected disabled="disabled">Select</option>
-        <?php while($ingredient = mysqli_fetch_assoc($ingredients)) { ?>
-        <option class="ing_list_item" value="<?php echo $ingredient['id'] ?>"><?php echo find_name_of_ingredient($ingredient['id']) ?></option>
-        <?php } ?>
-    </select></br>
-    <?php mysqli_free_result($ingredients); ?>
-    
-    <table id="ingredients_table"></table>
-    
-    <input type="text" name="ing_list" id="ing_list" class="hidden" value=""/>
-    
-    <!-- I N S T R U C T I O N S -->
-    
-    <label for="recipe_instructions_form">Recipe Instructions</label></br>
-    <textarea name="recipe_instructions" id="recipe_instructions" cols="30" rows="10"></textarea></br>
-
-    <!-- S U B M I T -->
-
-    <input type="password" name="password" placeholder="Admin Password" required /></br>
-    <input type="submit" id="submit" value="Submit"/></br>
-</form>
+    <form action="<?php echo url_for('/admin/recipe_new.php'); ?>" id="new_recipe_form" method="post">
+        
+        <!-- N A M E -->
+        
+        <label for="recipe_name">Recipe Name</label></br>
+        <input type="text" name="recipe_name" id="recipe_name" placeholder="Recipe Name" required></br>
+        
+        <!-- C A T E G O R I E S -->
+        
+        <label for="categories_list">Select the categories</label></br>
+        <?php $categories = find_all_categories(); ?>
+        <select name="categories_list" id="categories_list">
+            <option value="" selected disabled="disabled">Select</option>
+            <?php while($category = mysqli_fetch_assoc($categories)) { ?>
+            <option class="cat_list_item" value="<?php echo $category['id'] ?>"><?php echo find_name_of_category($category['id']) ?></option>
+            <?php } ?>
+        </select></br>
+        <?php mysqli_free_result($categories); ?>
+            
+        <table id="categories_table"></table>
+            
+        <input type="text" name="cat_list" id="cat_list" class="hidden" value=""/>
+            
+        <!-- I N G R E D I E N T S -->
+            
+        <label for="ingredients_list">Select new ingredient</label></br>
+        <?php $ingredients = find_all_ingredients(); ?>
+        <select name="ingredients_list" id="ingredients_list">
+            <option value="" selected disabled="disabled">Select</option>
+            <?php while($ingredient = mysqli_fetch_assoc($ingredients)) { ?>
+            <option class="ing_list_item" value="<?php echo $ingredient['id'] ?>"><?php echo find_name_of_ingredient($ingredient['id']) ?></option>
+            <?php } ?>
+        </select></br>
+        <?php mysqli_free_result($ingredients); ?>
+            
+        <table id="ingredients_table"></table>
+            
+        <input type="text" name="ing_list" id="ing_list" class="hidden" value=""/>
+            
+        <!-- I N S T R U C T I O N S -->
+            
+        <label for="recipe_instructions_form">Recipe Instructions</label></br>
+        <textarea name="recipe_instructions" id="recipe_instructions" cols="30" rows="10"></textarea></br>
+            
+        <!-- S U B M I T -->
+            
+        <input type="password" name="password" placeholder="Admin Password" required /></br>
+        <input type="submit" id="submit" value="Submit"/></br>
+    </form>
+</div>
 
 <script>var catArray = []; var ingArray = [];</script>
 <script src="<?php echo url_for('/scripts/script.js'); ?>"></script>

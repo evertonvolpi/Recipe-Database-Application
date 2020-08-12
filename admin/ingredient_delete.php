@@ -21,13 +21,15 @@ if(is_post_request()) {
 
 <?php include(SHARED_PATH . '/header.php'); ?>
 
-<h1>DELETE INGREDIENT - <?php echo h($ingredient_name); ?></h1>
-
-<h2>Are you sure you want to delete this ingredient?</h2>
-
-<form action="<?php echo url_for('/admin/ingredient_delete.php?id=' . h(u($id))) ?>" method="post">
-    <input type="password" name="password" placeholder="Admin Password" required /></br>
-    <input type="submit" value="Delete Ingredient">
-</form>
+<div id="content">
+    <h1>DELETE INGREDIENT - <?php echo h($ingredient_name); ?></h1>
+    
+    <h2>Are you sure you want to delete this ingredient?</h2>
+    
+    <form action="<?php echo url_for('/admin/ingredient_delete.php?id=' . h(u($id))) ?>" method="post">
+        <input type="password" name="password" placeholder="Admin Password" required /></br>
+        <input type="submit" value="Delete Ingredient">
+    </form>
+</div>
 
 <?php include(SHARED_PATH . '/footer.php'); ?>

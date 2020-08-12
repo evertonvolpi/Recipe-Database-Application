@@ -1,8 +1,62 @@
+/* F O N T S */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Julius+Sans+One&display=swap');
+
+/* C O L O U R S */
+:root {
+  --color-dark: hsl(72, 6%, 16%);
+  --color-light: hsl(60, 17%, 91%);
+  --color-medium: hsl(60, 1%, 29%);
+  --color-main: hsl(0, 24%, 67%);
+
+  --font-logo: 'Indie Flower', cursive, serif;
+  --font-main: 'Julius Sans One', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: black;
+}
+
+body {
+  background-color: var(--color-medium);
+  /* min-height: 100vh; */
+  /* max-width: 80vw;
+  margin: 0 auto; */
+}
+
+header {
+  background-color: var(--color-main);
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  text-align: center;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+header h1 a {
+  font-family: var(--font-logo);
+}
+
+body,
+input,
+select,
+button,
+a {
+  font-family: var(--font-main);
+}
+
 #content {
-  width: 920px;
-  min-height: 500px;
-  padding: 0 30px;
-  background-color: cornsilk;
+  padding: 1rem;
+  max-width: 80vw;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding-top: 100px;
+  background-color: var(--color-light);
 }
 
 td {
@@ -16,6 +70,16 @@ a {
 
 .hidden {
   display: none;
+}
+
+footer {
+  background-color: var(--color-main);
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: small;
 }
 
 

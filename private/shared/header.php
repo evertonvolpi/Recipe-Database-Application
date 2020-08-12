@@ -10,7 +10,7 @@
 <body>
     <header>
         <h1>
-            <a href="<?php echo url_for('/index.php'); ?>">RECEITAS</a>
+            <a href="<?php echo url_for('/index.php'); ?>">RECEITAS DA GABI</a>
         </h1>
         <nav>
             <button><a href="<?php echo url_for('/index.php'); ?>">Home</a></button>
