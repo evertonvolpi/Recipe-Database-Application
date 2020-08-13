@@ -21,10 +21,10 @@ $categories = find_categories_of_recipe($id);
     
     <p>
         <?php 
-        $i = 0;
+        $i = 1;
         while($category = mysqli_fetch_assoc($categories)) {
             echo h(find_name_of_category($category['cat_id']));
-            if (count($category) > $i) echo ' | ';
+            if (mysqli_num_rows($categories) > $i) echo ' | ';
             $i++;
         } ?>
     </p>

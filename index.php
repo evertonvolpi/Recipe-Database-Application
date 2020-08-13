@@ -31,84 +31,94 @@
     }
 ?>
 
-<?php $page_title = 'test'; ?>
+<?php $page_title = 'Receitas da Gabi'; ?>
 
 <?php include(SHARED_PATH . '/header.php'); ?>
 
 <div id="content">
 
-    <form action="<?php echo url_for('/index.php') ?>" method="post" id="select_form">        
-        <label for="ingredients_list">Filter by ingredients</label></br>
-        <?php $ings = find_all_ingredients(); ?>
-        <select multiple name="ingredients_list[]" id="ingredients_list" required>
-            <?php while($ingredient = mysqli_fetch_assoc($ings)) { ?>
-            <option type="checkbox" class="ing_list_item" value="<?php echo $ingredient['id'] ?>"><?php echo h(find_name_of_ingredient($ingredient['id'])) ?></option>
-            <?php } ?>
-        </select></br>
-        <?php mysqli_free_result($ings); ?>
+    <div class="form">
+        <form action="<?php echo url_for('/index.php') ?>" method="post" id="select_form">        
+            <label for="ingredients_list"><h3>Filter by ingredients</h3></label></br>
+            <?php $ings = find_all_ingredients(); ?>
+            <select multiple name="ingredients_list[]" id="ingredients_list" required>
+                <?php while($ingredient = mysqli_fetch_assoc($ings)) { ?>
+                <option type="checkbox" class="ing_list_item" value="<?php echo $ingredient['id'] ?>"><?php echo h(find_name_of_ingredient($ingredient['id'])) ?></option>
+                <?php } ?>
+            </select></br>
+            <?php mysqli_free_result($ings); ?>
 
-        <input type="text" name="filter_ing" id="filter_ing" class="hidden" value="0">
-        <input type="submit" id="submit_filter_ing" value="Filter">
-    </form>    
+            <input type="text" name="filter_ing" id="filter_ing" class="hidden" value="0">
+            <input type="submit" id="submit_filter_ing" value="Apply Filter">
+        </form>
+    </div>
 
-    <form action="<?php echo url_for('/index.php') ?>" method="post" id="select_form">        
-        </br></br><label for="categories_list">Filter by categories</label></br>
-        <?php $cats = find_all_categories(); ?>
-        <select multiple name="categories_list[]" id="categories_list" required>
-            <?php while($category = mysqli_fetch_assoc($cats)) { ?>
-            <option type="checkbox" class="cat_list_item" value="<?php echo $category['id'] ?>"><?php echo h(find_name_of_category($category['id'])) ?></option>
-            <?php } ?>
-        </select></br>
-        <?php mysqli_free_result($cats); ?>
+    <div class="form">
+        <form action="<?php echo url_for('/index.php') ?>" method="post" id="select_form">        
+            <label for="categories_list"><h3>Filter by categories</h3></label></br>
+            <?php $cats = find_all_categories(); ?>
+            <select multiple name="categories_list[]" id="categories_list" required>
+                <?php while($category = mysqli_fetch_assoc($cats)) { ?>
+                <option type="checkbox" class="cat_list_item" value="<?php echo $category['id'] ?>"><?php echo h(find_name_of_category($category['id'])) ?></option>
+                <?php } ?>
+            </select></br>
+            <?php mysqli_free_result($cats); ?>
 
-        <input type="text" name="filter_cat" id="filter_cat" class="hidden" value="0">
-        <input type="submit" id="submit_filter_cat" value="Filter">
-    </form>
+            <input type="text" name="filter_cat" id="filter_cat" class="hidden" value="0">
+            <input type="submit" id="submit_filter_cat" value="Apply Filter">
+        </form>
+    </div> 
 
-    <p>
-        <?php foreach($ing_array as $ing) {
-            echo h(find_name_of_ingredient($ing));
-            if (next($ing_array) == true) echo ' | ';
-        } ?>
-    </p>
+    
+    <div class="form">
+        <p>
+            <?php foreach($ing_array as $ing) {
+                echo h(find_name_of_ingredient($ing));
+                if (next($ing_array) == true) echo ' | ';
+            } ?>
+        </p>
+        
+        <p>
+            <?php foreach($cat_array as $cat) {
+                echo h(find_name_of_category($cat));
+                if (next($cat_array) == true) echo ' | ';
+            } ?>
+        </p>
+        
+        <?php
+            if(is_post_request()) {
+                if($_POST['recipe_selected'] !== '1') {      
+                    echo '<button><a href="' . url_for('/index.php') . '">Clear Filters</a></button>';
+                }
+            } 
+        ?>
+    </div>
+    
+    <div class="form">
+        <form action="<?php echo url_for('/index.php') ?>" method="post" id="select_form">
+            <label for="recipes"><h2>Select a Recipe</h2></label>
+            <select name="recipes" id="recipes">
+                <option value="" selected disabled="disabled">Select</option>
+                <?php while($recipe = mysqli_fetch_assoc($recipes)) { ?>
+                <option value="<?php echo $recipe['id']; ?>"><?php echo h($recipe['name']); ?></option>
+                <?php } ?>
+            </select>
+            <?php mysqli_free_result($recipes); ?>
 
-    <p>
-        <?php foreach($cat_array as $cat) {
-            echo h(find_name_of_category($cat));
-            if (next($cat_array) == true) echo ' | ';
-        } ?>
-    </p>
-
-    <?php
-    if(is_post_request()) {
-        if($_POST['recipe_selected'] !== '1') {      
-            echo '<button><a href="' . url_for('/index.php') . '">Clear Filters</a></button>';
+            <input type="text" name="recipe_id" id="recipe_id" class="hidden" value="">
+            <input type="text" name="recipe_selected" id="recipe_selected" class="hidden" value="0">
+        </form>
+    </div>
+    
+    <div class="view_recipe">
+        <?php
+        if(is_post_request()) {
+            if($_POST['recipe_selected'] === '1') {            
+                include(SHARED_PATH . '/display_recipe.php');
+            } 
         }
-    } 
-    ?>
-
-    <form action="<?php echo url_for('/index.php') ?>" method="post" id="select_form">
-        <label for="recipes"><h3>Select a Recipe</h3></label>
-        <select name="recipes" id="recipes">
-            <option value="" selected disabled="disabled">Select</option>
-            <?php while($recipe = mysqli_fetch_assoc($recipes)) { ?>
-            <option value="<?php echo $recipe['id']; ?>"><?php echo h($recipe['name']); ?></option>
-            <?php } ?>
-        </select>
-        <?php mysqli_free_result($recipes); ?>
-
-        <input type="text" name="recipe_id" id="recipe_id" class="hidden" value="">
-        <input type="text" name="recipe_selected" id="recipe_selected" class="hidden" value="0">
-    </form>
-
-    <?php
-    if(is_post_request()) {
-        if($_POST['recipe_selected'] === '1') {            
-            include(SHARED_PATH . '/display_recipe.php');
-        } 
-    }
-    ?>
-
+        ?>         
+    </div>
 </div>
 
 <script src="<?php echo url_for('/scripts/home_script.js'); ?>"></script>
