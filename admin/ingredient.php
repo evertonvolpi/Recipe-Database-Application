@@ -2,7 +2,7 @@
 
 <?php $page_title = 'Ingredients'; ?>
 
-<?php include(SHARED_PATH . '/header.php'); ?>
+<?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
     <h1>Ingredients</h1>
@@ -14,12 +14,8 @@
         <?php while($ingredient = mysqli_fetch_assoc($ingredients)) { ?>
         <tr>
             <td><?php echo $ingredient['name']; ?></td>
-            <td>
-                <button><a href="<?php echo url_for('/admin/ingredient_edit.php?id=' . h(u($ingredient['id']))); ?>">Edit</a></button>      
-            </td>
-            <td>
-                <button><a href="<?php echo url_for('/admin/ingredient_delete.php?id=' . h(u($ingredient['id']))); ?>">Delete</a></button>
-            </td>
+            <td><a class="action" href="<?php echo url_for('/admin/ingredient_edit.php?id=' . h(u($ingredient['id']))); ?>"><i class="far fa-edit edit_button" title="edit"></i></a></td>
+            <td><a class="action" href="<?php echo url_for('/admin/ingredient_delete.php?id=' . h(u($ingredient['id']))); ?>"><i class="far fa-trash-alt delete_button" title="delete"></i></a></td>        
         </tr>
         <?php } ?>
     </table>

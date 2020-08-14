@@ -38,7 +38,7 @@ if(is_post_request()) {
 
 <?php $page_title = 'Edit - ' . h($recipe_instructions['name']); ?>
 
-<?php include(SHARED_PATH . '/header.php'); ?>
+<?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
 

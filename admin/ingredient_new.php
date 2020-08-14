@@ -19,7 +19,7 @@ if(is_post_request()) {
 
 <?php $page_title = 'New Ingredient'; ?>
 
-<?php include(SHARED_PATH . '/header.php'); ?>
+<?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
     <h1>New Ingredient</h1>

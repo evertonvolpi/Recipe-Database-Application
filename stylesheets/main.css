@@ -8,6 +8,10 @@
   --color-medium: hsl(60, 1%, 29%);
   --color-main: hsl(0, 24%, 67%);
 
+  --color-view: hsl(151, 48%, 41%);
+  --color-edit: hsl(204, 54%, 49%);
+  --color-delete: hsl(5, 75%, 56%);
+
   --font-logo: 'Indie Flower', cursive, serif;
   --font-main: 'Julius Sans One', sans-serif;
 }
@@ -39,7 +43,6 @@ header {
 
 header h1 a {
   font-family: var(--font-logo);
-  /* font-size: calc(3vh + 2vw); */
   font-size: 40px;
   text-shadow: 1px 1px var(--color-light);
 }
@@ -51,10 +54,15 @@ header button {
 }
 
 header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 1vw;
   position: fixed;
   top: 70px;
   right: 0;
   left: 0;
+
   /* min-height: 50px; */
 }
 
@@ -71,10 +79,14 @@ a {
   max-width: 80vw;
   min-height: 100vh;
   margin: 0 auto;
-  padding-top: 80px;
+  padding-top: 130px;
   padding-bottom: 60px;
   background-color: var(--color-light);
   text-align: center;
+}
+
+#content>* {
+  padding-bottom: 1.5em;
 }
 
 td {
@@ -101,7 +113,7 @@ footer {
 }
 
 button {
-  min-width: 150px;
+  width: 150px;
 }
 
 input[type=submit],
@@ -131,7 +143,7 @@ button:hover a {
 }
 
 .form {
-  margin: 3rem 0;
+  padding-bottom: 1.5em;
 }
 
 .view_recipe {
@@ -169,6 +181,29 @@ table tr {
 
 table tr:last-child {
   border-bottom: 0;
+}
+
+#admin_table i:hover {
+  color: var(--color-medium);
+}
+
+.view_button {
+  color: var(--color-view);
+}
+
+.edit_button {
+  color: var(--color-edit);
+}
+
+.delete_button {
+  color: var(--color-delete);
+}
+
+@media (max-width: 768px) {
+  #admin_header nav {
+    flex-direction: column;
+    gap: 1px;
+  }
 }
 
 

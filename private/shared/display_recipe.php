@@ -1,5 +1,5 @@
 <div class="title_cat_style">
-   <h1><?php echo h($recipe_selected['name']) ?? ''; ?></h1>
+    <h1><?php echo h($recipe_selected['name']) ?? ''; ?></h1>
     <p>
         <?php 
         $i = 1;

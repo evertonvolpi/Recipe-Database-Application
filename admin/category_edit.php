@@ -18,7 +18,7 @@ if(is_post_request()) {
 
 <?php $page_title = 'Edit Category - ' . h($category_name); ?>
 
-<?php include(SHARED_PATH . '/header.php'); ?>
+<?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
     <h1>EDIT CATEGORY - <?php echo h($category_name); ?></h1>

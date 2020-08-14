@@ -2,7 +2,7 @@
 
 <?php $page_title = 'Categories'; ?>
 
-<?php include(SHARED_PATH . '/header.php'); ?>
+<?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
     <h1>Categories</h1>
@@ -14,12 +14,8 @@
         <?php while($category = mysqli_fetch_assoc($categories)) { ?>
         <tr>
             <td><?php echo $category['name']; ?></td>
-            <td>
-                <button><a href="<?php echo url_for('/admin/category_edit.php?id=' . h(u($category['id']))); ?>">Edit</a></button>      
-            </td>
-            <td>
-                <button><a href="<?php echo url_for('/admin/category_delete.php?id=' . h(u($category['id']))); ?>">Delete</a></button>
-            </td>
+            <td><a class="action" href="<?php echo url_for('/admin/category_edit.php?id=' . h(u($category['id']))); ?>"><i class="far fa-edit edit_button" title="edit"></i></a></td>
+            <td><a class="action" href="<?php echo url_for('/admin/category_delete.php?id=' . h(u($category['id']))); ?>"><i class="far fa-trash-alt delete_button" title="delete"></i></a></td>
         </tr>
         <?php } ?>
     </table>

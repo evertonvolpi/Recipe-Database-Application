@@ -18,7 +18,7 @@ if(is_post_request()) {
 
 <?php $page_title = 'Edit Ingredient - ' . h($ingredient_name); ?>
 
-<?php include(SHARED_PATH . '/header.php'); ?>
+<?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
     <h1>EDIT INGREDIENT - <?php echo h($ingredient_name); ?></h1>

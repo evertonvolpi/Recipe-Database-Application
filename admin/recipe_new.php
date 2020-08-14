@@ -28,7 +28,7 @@ if(is_post_request()) {
 
 <?php $page_title = 'New Recipe'; ?>
 
-<?php include(SHARED_PATH . '/header.php'); ?>
+<?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
     <h1>New Recipe</h1>
