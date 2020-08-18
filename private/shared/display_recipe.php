@@ -27,7 +27,7 @@
 
 <div class="ins_style">
     <h3>Instructions</h3>
-    <p><?php echo h($recipe_selected['content']); ?></p>
+    <p><?php echo nl2br(h($recipe_selected['content'])); ?></p>
 </div>
 
     
