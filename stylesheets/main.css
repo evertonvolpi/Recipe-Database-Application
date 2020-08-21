@@ -119,26 +119,26 @@ button {
   padding: 0 !important;
 }
 
-input[type=submit],
+/* input[type=submit], */
 select {
   min-width: 40vw;
 }
 
-select {
+/* select {
   height: auto;
-}
+} */
 
 select option:hover {
   background-color: var(--color-light);
 }
 
-input[type=submit],
+/* input[type=submit], */
 button {
   background-color: var(--color-light);
   height: 30px;
 }
 
-input[type=submit]:hover, 
+/* input[type=submit]:hover,  */
 button:hover,
 button:hover a {
   background-color: var(--color-medium);
@@ -188,6 +188,14 @@ table tr:last-child {
 
 #admin_table i:hover {
   color: var(--color-medium);
+}
+
+#ingredients_table input {
+  width: 30vw !important;
+}
+
+.sections_edit_recipe {
+  margin-bottom: 1rem;
 }
 
 .view_button {
