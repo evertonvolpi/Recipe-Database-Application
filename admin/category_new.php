@@ -1,17 +1,16 @@
-<?php require_once('../private/initialize.php');
+<?php 
+
+require_once('../private/initialize.php');
+
+require_login();
 
 if(is_post_request()) {
-    if($_POST['password'] == $admin_password) {
-        $result = create_new_category($_POST['new_category_name']);        
-        if($result) {
-            $_SESSION['status'] = 'Category "' . h($_POST['new_category_name']) . '" successfuly created.';
-            redirect_to(url_for('/admin/category.php'));
-        } else {
-            $message = $result;
-            echo "<script type='text/javascript'>alert('$message');</script>";
-        }
+    $result = create_new_category($_POST['new_category_name']);        
+    if($result) {
+        $_SESSION['status'] = 'Category "' . h($_POST['new_category_name']) . '" successfuly created.';
+        redirect_to(url_for('/admin/category.php'));
     } else {
-        $message = "INCORRECT PASSWORD";
+        $message = $result;
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
 }
@@ -27,8 +26,7 @@ if(is_post_request()) {
     
     <form action="<?php echo url_for('/admin/category_new.php'); ?>" method="post">
         <input type="text" name="new_category_name" placeholder="New Category Name" required></br>
-        <input type="password" name="password" placeholder="Admin Password" required /></br>
-        <input type="submit" value="Submit">
+        <button type="submit">Submit</button>
     </form>
 </div>
 

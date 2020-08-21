@@ -13,12 +13,8 @@
     require_once('functions.php');
     require_once('database.php');
     require_once('query_functions.php');
+    require_once('authentication_functions.php');
 
     $db = db_connect();
-    
-    $sql_password = "SELECT * FROM admin_password";
-    $result_password = mysqli_query($db, $sql_password);
-    $subject_password = mysqli_fetch_assoc($result_password);
-    mysqli_free_result($result_password);
-    $admin_password = $subject_password['admin_password'];
+    $errors = [];
 ?>

@@ -114,6 +114,9 @@ footer {
 
 button {
   width: 150px;
+  font-size: 70%;
+  font-weight: 1000;
+  padding: 0 !important;
 }
 
 input[type=submit],
@@ -208,7 +211,30 @@ table tr:last-child {
   margin: 1rem;
 }
 
-@media (max-width: 768px) {
+.errors {
+  font-size: 80%;
+  font-weight: 1000;
+  color: var(--color-delete);
+  border: 1px solid var(--color-delete);
+  padding: 0.5rem !important;
+  margin: 1rem;
+}
+
+#user_logged_in {
+  display: flex;
+  flex-direction: row;
+  font-size: 0.8rem;
+  position: fixed;
+  padding: 0.5rem;
+  top: 60px;
+  right: 0;
+}
+
+#user_logged_in a {
+  padding: 0 0.5rem;
+}
+
+@media (max-width: 980px) {
   #admin_header nav {
     flex-direction: column;
     gap: 1px;

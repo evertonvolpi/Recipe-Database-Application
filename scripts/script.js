@@ -11,7 +11,7 @@ $('#categories_list').change(function () {
 
         $('#categories_table').append(`<tr>
         <td>${catName}</td>
-        <td><button type='button' id='rem_cat_${catId}' class='remove_button'>Remove</button></td></tr>`);
+        <td><a class="remove_button" href="javascript:void(0)" id="rem_cat_${catId}"><i class="far fa-trash-alt delete_button" title="delete"></i></a></td></tr>`);
 
         catArray.push(catId);
     }
@@ -28,13 +28,13 @@ $("#ingredients_list").change(function() {
         $('#ingredients_table').append(`<tr>
         <td>${ingName}</td>
         <td><input type='text' name='${ingId}' /></td>
-        <td><button type='button' id='rem_ing_${ingId}' class='remove_button'>Remove</button></td></tr>`);
+        <td><a class="remove_button" href="javascript:void(0)" id="rem_cat_${ingId}"><i class="far fa-trash-alt delete_button" title="delete"></i></a></td></tr>`);
         
         ingArray.push(ingId);
     }
 });
 
-$('table').on('click', 'button.remove_button', function() {
+$('table').on('click', 'a.remove_button', function() {
     var id = this.id.slice(8);
     var group = this.id.slice(4, 7)
     console.log(`Complete id is: ${this.id} | the id itself is: ${id} | the group is ${group}`);

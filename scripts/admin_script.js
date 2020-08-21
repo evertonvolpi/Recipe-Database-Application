@@ -13,6 +13,6 @@ function activateHamburguerMenu(size) {
     }
   }
   
-  var size = window.matchMedia("(max-width: 768px)")
+  var size = window.matchMedia("(max-width: 980px)")
   activateHamburguerMenu(size)
   size.addListener(activateHamburguerMenu)

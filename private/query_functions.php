@@ -230,9 +230,7 @@ function delete_ingredient($ingredient_id) {
     if($result) {
         return true;
     } else {
-        echo mysqli_error($db);
-        db_disconnect($db);
-        exit;
+        return false;
     }
 }
 
@@ -316,9 +314,7 @@ function delete_category($category_id) {
     if($result) {
         return true;
     } else {
-        echo mysqli_error($db);
-        db_disconnect($db);
-        exit;
+        return false;
     }
 }
 
@@ -397,4 +393,21 @@ function select_recipes_by_categories($cat_list) {
     confirm_result_set($result);
     return $result;
 }
+
+// A D M I N S
+
+function find_admin_by_username($username) {
+    global $db;
+
+    $sql = "SELECT * FROM admins ";
+    $sql .= "WHERE username='" . db_escape($db, $username) . "' ";
+    $sql .= "LIMIT 1";
+    
+    $result = mysqli_query($db, $sql);
+    confirm_result_set($result);
+    $admin = mysqli_fetch_assoc($result);
+    mysqli_free_result($result);
+    return $admin; // returns an assoc. array
+  }
+
 ?>

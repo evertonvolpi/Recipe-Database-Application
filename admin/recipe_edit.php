@@ -1,4 +1,8 @@
-<?php require_once('../private/initialize.php');
+<?php 
+
+require_once('../private/initialize.php');
+
+require_login();
 
 $id = $_GET['id'] ?? redirect_to(url_for('/admin.php')); //if !isset redirect
 
@@ -10,30 +14,22 @@ $cat_old_list = [];
 $ing_old_list = [];
 
 if(is_post_request()) {
-    if($_POST['password'] == $admin_password) {
-        $recipe_name = h($_POST['recipe_name']) ?? '';
-        $instructions = h($_POST['recipe_instructions']) ?? '';
-        $cat_new_list = explode(',', $_POST['cat_list']);
-        
-        $ing_new_list = explode(',', $_POST['ing_list']);
-        foreach($ing_new_list as $ing_id) {
-            $ing_qty_list[$ing_id] = h($_POST[$ing_id]);
-        }
-
-        update_recipe_instructions($id, $recipe_name, $instructions);
-
-        delete_assigned_categories($id);
-        create_new_recipe_categories($id, $cat_new_list);
-
-        delete_recipe($id);
-        create_new_recipe_ingredients($id, $ing_qty_list);
-        
-        $_SESSION['status'] = 'Recipe "' . h($recipe_name) . '" successfuly edited.';
-        redirect_to(url_for('/admin/recipe_view.php?id=' . h(u($id))));
-    } else {
-        $message = "INCORRECT PASSWORD";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }        
+    $recipe_name = h($_POST['recipe_name']) ?? '';
+    $instructions = h($_POST['recipe_instructions']) ?? '';
+    $cat_new_list = explode(',', $_POST['cat_list']);
+    
+    $ing_new_list = explode(',', $_POST['ing_list']);
+    foreach($ing_new_list as $ing_id) {
+        $ing_qty_list[$ing_id] = h($_POST[$ing_id]);
+    }
+    update_recipe_instructions($id, $recipe_name, $instructions);
+    delete_assigned_categories($id);
+    create_new_recipe_categories($id, $cat_new_list);
+    delete_recipe($id);
+    create_new_recipe_ingredients($id, $ing_qty_list);
+    
+    $_SESSION['status'] = 'Recipe "' . h($recipe_name) . '" successfuly edited.';
+    redirect_to(url_for('/admin/recipe_view.php?id=' . h(u($id))));     
 }
 ?>
 
@@ -67,7 +63,7 @@ if(is_post_request()) {
             <?php while($category = mysqli_fetch_assoc($recipe_categories)) { ?>
             <tr>
                 <td><?php echo find_name_of_category($category['cat_id']); ?></td>
-                <td><button type="button" class="remove_button" id="<?php echo 'rem_cat_' . $category['cat_id']; ?>">Remove</button></td>
+                <td><a class="remove_button" href="javascript:void(0)" id="<?php echo 'rem_cat_' . $category['cat_id']; ?>"><i class="far fa-trash-alt delete_button" title="delete"></i></a></td>
             </tr>
             <?php $cat_old_list[] = $category['cat_id']; } ?>
         </table>
@@ -98,7 +94,9 @@ if(is_post_request()) {
                     name="<?php echo h($ingredient['ing_id']); ?>"
                     value="<?php echo h($ingredient['quantity']); ?>" />
                 </td>
-                <td><button type="button" class="remove_button" id="<?php echo 'rem_ing_' . $ingredient['ing_id']; ?>">Remove</button></td>
+                <td><a class="remove_button" href="javascript:void(0)" id="<?php echo 'rem_ing_' . $ingredient['ing_id']; ?>"><i class="far fa-trash-alt delete_button" title="delete"></i></a></td>
+
+                <!-- <td><button type="button" class="remove_button" id="<?php //echo 'rem_ing_' . $ingredient['ing_id']; ?>">Remove</button></td> -->
             </tr>
             <?php $ing_old_list[] = $ingredient['ing_id']; } ?>
         </table>
@@ -115,8 +113,7 @@ if(is_post_request()) {
             
             
         <!-- S U B M I T -->
-        <input type="password" name="password" placeholder="Admin Password" required /></br>
-        <input type="submit" id="submit" value="Submit">
+        <button type="submit" id="submit">Submit</button>
     </form>
 
 </div>

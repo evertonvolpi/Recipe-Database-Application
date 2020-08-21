@@ -1,29 +1,24 @@
 <?php require_once('../private/initialize.php'); ?>
 
+<?php require_login(); ?>
+
 <?php
 if(is_post_request()) {
-    if($_POST['password'] == $admin_password) {
-        $recipe_name = h($_POST['recipe_name']) ?? '';
-        $instructions = h($_POST['recipe_instructions']) ?? '';
-        
-        $new_recipe_id = create_new_recipe_instructions($recipe_name, $instructions);
-        
-        $ing_new_list = explode(',', $_POST['ing_list']);
-        foreach($ing_new_list as $ing_id) {
-            $ing_qty_list[$ing_id] = h($_POST[$ing_id]);
-        }
-        
-        $cat_new_list = explode(',', $_POST['cat_list']);
-
-        create_new_recipe_ingredients($new_recipe_id, $ing_qty_list);
-        create_new_recipe_categories($new_recipe_id, $cat_new_list);
-
-        $_SESSION['status'] = 'Recipe "' . h($recipe_name) . '" successfuly created.';
-        redirect_to(url_for('/admin/recipe_view.php?id=' . h(u($new_recipe_id))));
-    } else {
-        $message = "INCORRECT PASSWORD";
-        echo "<script type='text/javascript'>alert('$message');</script>";
-    }    
+    $recipe_name = h($_POST['recipe_name']) ?? '';
+    $instructions = h($_POST['recipe_instructions']) ?? '';
+    
+    $new_recipe_id = create_new_recipe_instructions($recipe_name, $instructions);
+    
+    $ing_new_list = explode(',', $_POST['ing_list']);
+    foreach($ing_new_list as $ing_id) {
+        $ing_qty_list[$ing_id] = h($_POST[$ing_id]);
+    }
+    
+    $cat_new_list = explode(',', $_POST['cat_list']);
+    create_new_recipe_ingredients($new_recipe_id, $ing_qty_list);
+    create_new_recipe_categories($new_recipe_id, $cat_new_list);
+    $_SESSION['status'] = 'Recipe "' . h($recipe_name) . '" successfuly created.';
+    redirect_to(url_for('/admin/recipe_view.php?id=' . h(u($new_recipe_id)))); 
 }
 ?>
 
@@ -80,8 +75,7 @@ if(is_post_request()) {
             
         <!-- S U B M I T -->
             
-        <input type="password" name="password" placeholder="Admin Password" required /></br>
-        <input type="submit" id="submit" value="Submit"/></br>
+        <button type="submit" id="submit">Submit</button>
     </form>
 </div>
 

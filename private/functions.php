@@ -40,4 +40,21 @@
         }
     }
 
+    function is_blank($value) {
+        return !isset($value) || trim($value) === '';
+    }
+    
+
+    function display_errors($errors=array()) {
+        $output = '';
+        if(!empty($errors)) {
+          $output .= '<div class="errors">';
+          foreach($errors as $error) {
+            $output .= '<p>' . h($error) . '</p>';
+          }
+          $output .= '</div>';
+        }
+        return $output;
+      }
+
 ?>

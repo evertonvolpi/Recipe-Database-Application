@@ -1,5 +1,7 @@
 <?php require_once('../private/initialize.php'); ?>
 
+<?php require_login(); ?>
+
 <?php $page_title = 'Categories'; ?>
 
 <?php include(SHARED_PATH . '/header_admin.php'); ?>

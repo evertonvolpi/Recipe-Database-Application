@@ -22,4 +22,9 @@
             <div class="to_hide"><a href="<?php echo url_for('/admin/category.php'); ?>"><button>Categories</button></a></div>
             <div class="to_hide"><a href="<?php echo url_for('/admin/ingredient.php'); ?>"><button>Ingredients</button></a></div>
         </nav>
+
+        <div id="user_logged_in">
+            <p>User: <?php echo h($_SESSION['username'] ?? ''); ?></p>
+            <a href="<?php echo url_for('/admin/logout.php'); ?>"><i class="fas fa-sign-out-alt" title="Logout"></i></a>
+        </div>
     </header>

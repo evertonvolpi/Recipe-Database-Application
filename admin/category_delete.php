@@ -1,16 +1,21 @@
-<?php require_once('../private/initialize.php');
+<?php 
+
+require_once('../private/initialize.php');
+
+require_login();
 
 $id = $_GET['id'] ?? redirect_to(url_for('/admin/category.php')); //if !isset redirect
 $category_name = find_name_of_category($id);
+$errors = [];
 
 if(is_post_request()) {
-    if($_POST['password'] == $admin_password) {
-        delete_category($id);
+
+    $result = delete_category($id);      
+    if($result) {
         $_SESSION['status'] = 'Category "' . h($category_name) . '" successfuly deleted.';
         redirect_to(url_for('/admin/category.php'));
     } else {
-        $message = "INCORRECT PASSWORD";
-        echo "<script type='text/javascript'>alert('$message');</script>";
+        $errors[] = 'You cannot delete a category that is assigned to a recipe.';
     }
 }
 
@@ -21,16 +26,16 @@ if(is_post_request()) {
 <?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
+
+    <?php echo display_errors($errors); ?>
+
     <h1>DELETE CATEGORY - <?php echo h($category_name); ?></h1>
     
     <h2>Are you sure you want to delete this category?</h2>
     
     <form action="<?php echo url_for('/admin/category_delete.php?id=' . h(u($id))) ?>" method="post">
-        <input type="password" name="password" placeholder="Admin Password" required /></br>
-        <input type="submit" value="Delete Category">
+        <button type="submit" name="submit">Delete</button>
     </form>
 </div>
-
-
 
 <?php include(SHARED_PATH . '/footer.php'); ?>
