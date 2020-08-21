@@ -6,7 +6,7 @@ $ingredient_name = find_name_of_ingredient($id);
 if(is_post_request()) {
     if($_POST['password'] == $admin_password) {
         update_ingredient($id, $_POST['new_value']);
-
+        $_SESSION['status'] = 'Ingredient "' . h($_POST['new_value']) . '" successfuly edited.';
         redirect_to(url_for('/admin/ingredient.php'));
     } else {
         $message = "INCORRECT PASSWORD";

@@ -18,6 +18,7 @@ if(is_post_request()) {
         create_new_recipe_ingredients($new_recipe_id, $ing_qty_list);
         create_new_recipe_categories($new_recipe_id, $cat_new_list);
 
+        $_SESSION['status'] = 'Recipe "' . h($recipe_name) . '" successfuly created.';
         redirect_to(url_for('/admin/recipe_view.php?id=' . h(u($new_recipe_id))));
     } else {
         $message = "INCORRECT PASSWORD";

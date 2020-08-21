@@ -6,7 +6,7 @@ $category_name = find_name_of_category($id);
 if(is_post_request()) {
     if($_POST['password'] == $admin_password) {
         update_category($id, $_POST['new_value']);
-
+        $_SESSION['status'] = 'Category "' . h($_POST['new_value']) . '" successfuly edited.';
         redirect_to(url_for('/admin/category.php'));
     } else {
         $message = "INCORRECT PASSWORD";

@@ -4,6 +4,7 @@ if(is_post_request()) {
     if($_POST['password'] == $admin_password) {
         $result = create_new_category($_POST['new_category_name']);        
         if($result) {
+            $_SESSION['status'] = 'Category "' . h($_POST['new_category_name']) . '" successfuly created.';
             redirect_to(url_for('/admin/category.php'));
         } else {
             $message = $result;

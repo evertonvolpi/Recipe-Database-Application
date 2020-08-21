@@ -1,22 +1,21 @@
 <?php require_once('../private/initialize.php');
 
 $id = $_GET['id'] ?? redirect_to(url_for('/admin/index.php')); //if !isset redirect
+$subject = find_recipe_by_id($id);
+$instructions = mysqli_fetch_assoc($subject);
+mysqli_free_result($subject);
 
 if(is_post_request()) {
     if($_POST['password'] == $admin_password) {
         delete_recipe($id);
         delete_assigned_categories($id);
         delete_instructions($id);
-
+        $_SESSION['status'] = 'Recipe "' . h($instructions['name']) . '" successfuly deleted.';
         redirect_to(url_for('/admin/index.php'));
     } else {
         $message = "INCORRECT PASSWORD";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
-} else {
-    $subject = find_recipe_by_id($id);
-    $instructions = mysqli_fetch_assoc($subject);
-    mysqli_free_result($subject);
 }
 
 ?>

@@ -4,6 +4,7 @@ if(is_post_request()) {
     if($_POST['password'] == $admin_password) {
         $result = create_new_ingredient($_POST['new_ingredient_name']);        
         if($result) {
+            $_SESSION['status'] = 'Ingredient "' . h($_POST['new_ingredient_name']) . '" successfuly registered.';
             redirect_to(url_for('/admin/ingredient.php'));
         } else {
             $message = $result;

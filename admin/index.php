@@ -5,6 +5,9 @@
 <?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
+
+    <?php echo display_status_message(); ?>
+
     <div>
         <table id="admin_table">
             <tr>

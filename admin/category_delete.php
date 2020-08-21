@@ -1,18 +1,17 @@
 <?php require_once('../private/initialize.php');
 
 $id = $_GET['id'] ?? redirect_to(url_for('/admin/category.php')); //if !isset redirect
+$category_name = find_name_of_category($id);
 
 if(is_post_request()) {
     if($_POST['password'] == $admin_password) {
         delete_category($id);
-
+        $_SESSION['status'] = 'Category "' . h($category_name) . '" successfuly deleted.';
         redirect_to(url_for('/admin/category.php'));
     } else {
         $message = "INCORRECT PASSWORD";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
-} else {
-    $category_name = find_name_of_category($id);
 }
 
 ?>

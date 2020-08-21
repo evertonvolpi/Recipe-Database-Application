@@ -1,6 +1,6 @@
 <?php
-
-    //ob_start();
+    ob_start(); // output buffering: on
+    session_start(); // sessions: on
 
     define('PRIVATE_PATH', dirname(__FILE__));
     define('SHARED_PATH', PRIVATE_PATH . '/shared');

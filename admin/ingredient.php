@@ -5,6 +5,9 @@
 <?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
+
+    <?php echo display_status_message(); ?>
+    
     <h1>Ingredients</h1>
     
     <button><a href="<?php echo url_for('/admin/ingredient_new.php') ?>">Register New Ingredient</a></button>

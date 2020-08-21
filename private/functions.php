@@ -32,4 +32,12 @@
         return $_SERVER['REQUEST_METHOD'] == 'GET';
     }
 
+    function display_status_message() {
+        if(isset($_SESSION['status'])) {
+            $message = $_SESSION['status'];
+            unset($_SESSION['status']);
+            return '<p class="message">' . h($message) . '</p>';
+        }
+    }
+
 ?>

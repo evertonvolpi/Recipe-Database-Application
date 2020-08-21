@@ -17,6 +17,9 @@ $categories = find_categories_of_recipe($id);
 <?php include(SHARED_PATH . '/header_admin.php'); ?>
 
 <div id="content">
+
+    <?php echo display_status_message(); ?>
+
     <div class="view_recipe">
         <?php include(SHARED_PATH . '/display_recipe.php'); ?>         
     </div>

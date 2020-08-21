@@ -27,7 +27,8 @@ if(is_post_request()) {
 
         delete_recipe($id);
         create_new_recipe_ingredients($id, $ing_qty_list);
-
+        
+        $_SESSION['status'] = 'Recipe "' . h($recipe_name) . '" successfuly edited.';
         redirect_to(url_for('/admin/recipe_view.php?id=' . h(u($id))));
     } else {
         $message = "INCORRECT PASSWORD";

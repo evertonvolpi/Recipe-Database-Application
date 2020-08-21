@@ -1,18 +1,17 @@
 <?php require_once('../private/initialize.php');
 
 $id = $_GET['id'] ?? redirect_to(url_for('/admin/ingredient.php')); //if !isset redirect
+$ingredient_name = find_name_of_ingredient($id);
 
 if(is_post_request()) {
     if($_POST['password'] == $admin_password) {
         delete_ingredient($id);
-
+        $_SESSION['status'] = 'Ingredient "' . h($ingredient_name) . '" successfuly deleted.';
         redirect_to(url_for('/admin/ingredient.php'));
     } else {
         $message = "INCORRECT PASSWORD";
         echo "<script type='text/javascript'>alert('$message');</script>";
     }
-} else {
-    $ingredient_name = find_name_of_ingredient($id);
 }
 
 ?>
