@@ -14,13 +14,13 @@ $cat_old_list = [];
 $ing_old_list = [];
 
 if(is_post_request()) {
-    $recipe_name = h($_POST['recipe_name']) ?? '';
-    $instructions = h($_POST['recipe_instructions']) ?? '';
+    $recipe_name = $_POST['recipe_name'] ?? '';
+    $instructions = $_POST['recipe_instructions'] ?? '';
     $cat_new_list = explode(',', $_POST['cat_list']);
     
     $ing_new_list = explode(',', $_POST['ing_list']);
     foreach($ing_new_list as $ing_id) {
-        $ing_qty_list[$ing_id] = h($_POST[$ing_id]);
+        $ing_qty_list[$ing_id] = $_POST[$ing_id];
     }
     update_recipe_instructions($id, $recipe_name, $instructions);
     delete_assigned_categories($id);

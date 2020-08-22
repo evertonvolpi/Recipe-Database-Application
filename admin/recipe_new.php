@@ -4,14 +4,14 @@
 
 <?php
 if(is_post_request()) {
-    $recipe_name = h($_POST['recipe_name']) ?? '';
-    $instructions = h($_POST['recipe_instructions']) ?? '';
+    $recipe_name = $_POST['recipe_name'] ?? '';
+    $instructions = $_POST['recipe_instructions'] ?? '';
     
     $new_recipe_id = create_new_recipe_instructions($recipe_name, $instructions);
     
     $ing_new_list = explode(',', $_POST['ing_list']);
     foreach($ing_new_list as $ing_id) {
-        $ing_qty_list[$ing_id] = h($_POST[$ing_id]);
+        $ing_qty_list[$ing_id] = $_POST[$ing_id];
     }
     
     $cat_new_list = explode(',', $_POST['cat_list']);
